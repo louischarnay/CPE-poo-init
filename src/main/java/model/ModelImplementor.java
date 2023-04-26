@@ -87,8 +87,13 @@ public class ModelImplementor {
 		 
 		PieceModel findPiece = null;
 
-		// TODO Atelier 1
-		
+		 for(PieceModel piece : this.pieces){
+			 if(coord != null && piece.hasThisCoord(coord)){
+				 findPiece = piece;
+				 break;
+			 }
+		 }
+
 		return findPiece;
 	}
 
