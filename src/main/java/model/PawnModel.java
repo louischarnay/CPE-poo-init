@@ -13,73 +13,66 @@ public class PawnModel implements PieceModel{
 
 	public PawnModel(Coord coord, PieceSquareColor pieceColor) {
 		super();
-
-		// TODO Atelier 1
-
+		this.coord = coord;
+		this.pieceColor = pieceColor;
 	}
 
 	@Override
 	public char getColonne() {
-		char colonne = ' ';
-		
-		// TODO Atelier 1
-
-		return colonne;
+		return this.coord.getColonne();
 	}
 
 	@Override
 	public int getLigne() {
-		int ligne = -1;
-		
-		// TODO Atelier 1
-
-		return ligne;
+		return this.coord.getLigne();
 	}
 
 	@Override
 	public boolean hasThisCoord(Coord coord) {
-		boolean hasThisCoord = false;
-		
-		// TODO Atelier 1
-
-		return hasThisCoord;
+		return this.coord.equals(coord);
 	}
 
 	@Override
 	public PieceSquareColor getPieceColor() {
-		PieceSquareColor color = null;
-		
-		// TODO Atelier 1
-
-		return color;	
+		return this.pieceColor;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		String st = null;
-
-		// TODO Atelier 1
-
-		return st;
+		return "PawnModel{" +
+				"coord=" + coord +
+				", pieceColor=" + pieceColor +
+				'}';
 	}
 
 	@Override
 	public void move(Coord coord) {
+		this.coord = coord;
+	}
 
-		// TODO Atelier 1
-
+	/**
+	 * return -1 if the piece is black, 1 else
+	 * @return -1 or 1
+	 */
+	private int getFacing(){
+		return this.pieceColor == PieceSquareColor.BLACK ? -1 : 1;
 	}
 
 	@Override
 	public boolean isMoveOk(Coord targetCoord, boolean isPieceToCapture) {
-		boolean ret = false;
 
-		// TODO Atelier 1
+		int colDistance = targetCoord.getColonne() - this.getColonne();
+		int ligDistance = targetCoord.getLigne() - this.getLigne();
+		int deltaLig = (int) Math.signum(ligDistance);
 
-		return ret;
+		if (Math.abs(colDistance) == Math.abs(ligDistance)){
+			if (!isPieceToCapture) {
+				return deltaLig == this.getFacing() && Math.abs(colDistance) == 1;
+			} else {
+				return Math.abs(colDistance) == 2;
+			}
+		}
+		return false;
 	}
 
 	@Override
