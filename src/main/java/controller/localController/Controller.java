@@ -145,26 +145,42 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	 */
 	@Override
 	public OutputModelData<Integer> moveCapturePromote(Integer toMovePieceIndex, Integer targetSquareIndex) {
-
 		OutputModelData<Integer> outputControllerData = null;
 
-		// TODO atelier 2
+		OutputModelData<Coord> outputModelData;
+		InputViewData<Integer> inputViewData;
 
-		// Inutile de reconstituer un objetOutputModelData<Integer>, aucun client ne le récupère en mode local
+		Coord toMovePieceCoord = this.transformIndexToCoord(toMovePieceIndex);
+		Coord targetSquareCoord = this.transformIndexToCoord(targetSquareIndex);
+
+		if (this.model != null) {
+			outputModelData  = this.model.moveCapturePromote(toMovePieceCoord, targetSquareCoord);
+
+			if (outputModelData.isMoveDone && this.view != null) {
+				inputViewData = new InputViewData<>(
+						toMovePieceIndex,
+						targetSquareIndex,
+						transformCoordToIndex(outputModelData.capturedPieceCoord),
+						transformCoordToIndex(outputModelData.promotedPieceCoord),
+						outputModelData.promotedPieceColor);
+
+				this.view.actionOnGui(inputViewData);
+			}
+		}
+
 		return outputControllerData;
 	}
 
 
 	/**
 	 * @param squareIndex
-	 * @param length
 	 * @return les coordonnées métier calculées à  partir de l'index du SquareGUI sous la PieceGUI
 	 */
 	private Coord transformIndexToCoord (int squareIndex) {
-		Coord coord = null;
+		Coord coord;
 		int  length = ModelConfig.LENGTH;
 		char col = (char) ((squareIndex)%length + 'a');
-		int ligne = length - (squareIndex)/length;
+		int ligne = length - squareIndex/length;
 		coord = new Coord(col, ligne);
 		return coord;
 	}

@@ -77,10 +77,24 @@ public class PawnModel implements PieceModel{
 
 	@Override
 	public List<Coord> getCoordsOnItinerary(Coord targetCoord) {
+		List<Coord> coordsOnItinery = new LinkedList<>();
 
-		List<Coord> coordsOnItinery = new LinkedList<Coord>(); 
+		int initCol = this.getColonne();
+		int initLig = this.getLigne();
 
-		// TODO Atelier 2
+		int colDistance = targetCoord.getColonne() - this.getColonne();
+		int ligDistance = targetCoord.getLigne() - this.getLigne();
+
+		int deltaLig = Math.round(Math.signum(ligDistance));
+		int deltaCol = Math.round(Math.signum(colDistance));
+
+
+		if (Math.abs(colDistance) == Math.abs(ligDistance)){
+			for (int i = 1; i < Math.abs(colDistance); i++) {
+				Coord coordIt = new Coord((char)(initCol + i*deltaCol), initLig + i*deltaLig);
+				coordsOnItinery.add(coordIt);
+			}
+		}
 
 		return coordsOnItinery;
 	}
