@@ -59,10 +59,10 @@ public class Model implements BoardGame<Coord> {
 		PieceSquareColor toPromotePieceColor = null;
 
 		// Si la pièce est déplaçable (couleur du joueur courant et case arrivée disponible)
-		if (this.isPieceMoveable(toMovePieceCoord, targetSquareCoord)) {
+		if(this.isPieceMoveable(toMovePieceCoord, targetSquareCoord)) {
 
 			// S'il n'existe pas plusieurs pièces sur le chemin
-			if (this.isThereMaxOnePieceOnItinerary(toMovePieceCoord, targetSquareCoord)) {
+			if(this.isThereMaxOnePieceOnItinerary(toMovePieceCoord, targetSquareCoord)) {
 
 				//Recherche coord de l'éventuelle pièce à prendre
 				toCapturePieceCoord = this.getToCapturePieceCoord(toMovePieceCoord, targetSquareCoord);
@@ -171,7 +171,8 @@ public class Model implements BoardGame<Coord> {
 	 * @param targetSquareCoord
 	 * Déplacement effectif de la PieceModel
 	 */
-	void movePiece(Coord toMovePieceCoord, Coord targetSquareCoord) { // TODO : remettre en "private" après test unitaires
+	void movePiece(Coord toMovePieceCoord, Coord targetSquareCoord) {
+		// TODO : remettre en "private" après test unitaires
 		this.implementor.movePiece(toMovePieceCoord, targetSquareCoord);
 	}
 
