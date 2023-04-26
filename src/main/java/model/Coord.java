@@ -1,7 +1,5 @@
 package model;
 
-
-
 /**
  * @author francoiseperrin
  *
@@ -27,12 +25,10 @@ public class Coord implements Comparable<Coord>{
 		return ligne;
 	}
 
-
 	@Override
 	public String toString() {
 		return "["+ligne + "," + colonne + "]";
 	}
-
 
 	/**
 	 * @param coord
@@ -40,13 +36,11 @@ public class Coord implements Comparable<Coord>{
 	 */
 	public static boolean coordonnees_valides(Coord coord){
 
-		boolean ret = false;
+		if (coord == null) return false;
+		else if (coord.getColonne() < 'a' || coord.getColonne() >= 'a'+MAX) return false;
+		else return coord.getLigne() > 1 && coord.getLigne() <= MAX;
 
-		// TODO Atelier 1
-		
-		return ret;
 	}
-
 
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
@@ -59,11 +53,14 @@ public class Coord implements Comparable<Coord>{
 	 */
 	@Override
 	public int compareTo(Coord o) {
-		int ret = 999;
-		
-		// TODO Atelier 1
-		
-		return ret ;
+
+		if (this.getColonne() == o.getColonne() && this.getLigne() == o.getLigne()) return 0;
+		if (this.getColonne() < o.getColonne()) return -1;
+		if (this.getColonne() > o.getColonne()) return 1;
+		if (this.getLigne() < o.getLigne()) return -1;
+		if (this.getLigne() > o.getLigne()) return 1;
+
+		return 0;
 	}
 
 }
