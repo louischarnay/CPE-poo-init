@@ -1,4 +1,4 @@
-package atelier1.nutsAndBolts;
+package nutsAndBolts;
 
 
 

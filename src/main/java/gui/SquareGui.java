@@ -1,6 +1,5 @@
-package atelier1.gui;
+package gui;
 
-import atelier1.nutsAndBolts.PieceSquareColor;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -12,24 +11,25 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import nutsAndBolts.PieceSquareColor;
 
 /**
  * @author francoiseperrin
  * 
- * Classe d'affichage des carr�s du damier
- * leur couleur est initialis� par les couleurs par d�faut du jeu
+ * Classe d'affichage des carrés du damier
+ * leur couleur est initialisée par les couleurs par défaut du jeu
  *
  */
 class SquareGui extends BorderPane implements CheckersSquareGui {
 	
-	private PieceSquareColor squareColor;    		// le carr� est Noir ou Blanc
-	
+	private PieceSquareColor squareColor;    		// le carré est Noir ou Blanc
+
 	public SquareGui (PieceSquareColor squareColor) {
 		// ToDo Atelier 2
 	}
-
+	
 	/**
-	 *Retourne l'indice du carr� sur la grille (N� de 0 � 99)
+	 *Retourne l'indice du carré sur la grille (N° de 0 à 99)
 	 */
 	@Override
 	public int getSquareCoord() {
