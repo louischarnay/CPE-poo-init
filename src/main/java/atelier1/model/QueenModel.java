@@ -1,14 +1,14 @@
-package model;
+package atelier1.model;
 
 
 import java.util.LinkedList;
 import java.util.List;
 
-import nutsAndBolts.PieceSquareColor;
+import atelier1.nutsAndBolts.PieceSquareColor;
 /**
  * @author francoiseperrin
  *
- *le mode de dÃ©placement et de prise de la reine est diffÃ©rent de celui du pion
+ *le mode de déplacement et de prise de la reine est différent de celui du pion
  */
 public class QueenModel implements PieceModel {
 

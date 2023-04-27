@@ -1,10 +1,10 @@
-package model;
+package atelier1.model;
 
 public interface Promotable {
 	
 	/**
-	 * @return true si le pion noir est arrivÃ© Ã  la ligne 1
-	 * ou si le pion blanc est arrivÃ© Ã  la ligne MAX
+	 * @return true si le pion noir est arrivé à la ligne 1
+	 * ou si le pion blanc est arrivé à la ligne MAX
 	 */
 	public boolean isPromotable();
 	
