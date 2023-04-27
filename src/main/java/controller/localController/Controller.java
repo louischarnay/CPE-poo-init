@@ -38,7 +38,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 
 	// Cette valeur est MAJ chaque fois que l'utilisateur clique sur une pièce
 	// Elle doit être conservée pour être utilisée lorsque l'utilisateur clique sur une case
-	private int toMovePieceIndex;	
+	private int toMovePieceIndex;
 
 	public Controller() {
 		this.model =  null;
@@ -46,7 +46,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 		this.setToMovePieceIndex(-1);
 	}
 
-	private void setToMovePieceIndex(int toMovePieceIndex) {
+	public void setToMovePieceIndex(int toMovePieceIndex) {
 		this.toMovePieceIndex = toMovePieceIndex;
 	}
 
@@ -96,7 +96,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	 * @param mouseEvent
 	 * Ecoute les événements sur les PieceGui
 	 */
-	private void checkersPieceGuiHandle(MouseEvent mouseEvent) {
+	public void checkersPieceGuiHandle(MouseEvent mouseEvent) {
 
 		// Recherche PieceGui sélectionnée
 		ImageView selectedPiece = (ImageView) mouseEvent.getSource();
@@ -111,7 +111,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	 * @param mouseEvent
 	 * Ecoute les événements sur les SquareGui
 	 */
-	private void checkersSquareGuiHandle(MouseEvent mouseEvent) {
+	public void checkersSquareGuiHandle(MouseEvent mouseEvent) {
 		System.out.println("ici");
 		// Recherche SquareGUI sélectionné
 		CheckersSquareGui square = (CheckersSquareGui) mouseEvent.getSource();
@@ -176,7 +176,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	 * @param squareIndex
 	 * @return les coordonnées métier calculées à  partir de l'index du SquareGUI sous la PieceGUI
 	 */
-	private Coord transformIndexToCoord (int squareIndex) {
+	public Coord transformIndexToCoord (int squareIndex) {
 		Coord coord;
 		int  length = ModelConfig.LENGTH;
 		char col = (char) ((squareIndex)%length + 'a');
@@ -185,7 +185,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 		return coord;
 	}
 
-	private int transformCoordToIndex (Coord coord) {
+	public int transformCoordToIndex (Coord coord) {
 		int squareIndex = -1;
 		int  length = ModelConfig.LENGTH;
 		if (coord != null) {

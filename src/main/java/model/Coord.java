@@ -1,12 +1,14 @@
 package model;
 
+
+
 /**
  * @author francoiseperrin
  *
  * Coordonnées des PieceModel
  */
 public class Coord implements Comparable<Coord>{
-	
+
 	private char colonne; 	// ['a'..'j']
 	private int ligne;		// [10..1]
 	static final int MAX = ModelConfig.LENGTH;	// 10
@@ -25,9 +27,35 @@ public class Coord implements Comparable<Coord>{
 		return ligne;
 	}
 
+
 	@Override
 	public String toString() {
 		return "["+ligne + "," + colonne + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + colonne;
+		result = prime * result + ligne;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Coord other = (Coord) obj;
+		if (colonne != other.colonne)
+			return false;
+		if (ligne != other.ligne)
+			return false;
+		return true;
 	}
 
 	/**
@@ -35,32 +63,29 @@ public class Coord implements Comparable<Coord>{
 	 * @return true si 'a' <= col < 'a'+MAX et 1 < lig <= MAX
 	 */
 	public static boolean coordonnees_valides(Coord coord){
-
-		if (coord == null) return false;
-		else if (coord.getColonne() < 'a' || coord.getColonne() >= 'a'+MAX) return false;
-		else return coord.getLigne() > 1 && coord.getLigne() <= MAX;
-
+		boolean ret = false;
+		ret = ( (coord.colonne< 'a' + MAX) &&
+				(coord.colonne>= 'a') &&
+				(coord.ligne<= MAX) &&
+				(coord.ligne> 0) );
+		return ret;
 	}
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 * 
+	 *
 	 * La méthode compareTo() indique comment comparer un objet à l'objet courant
 	 * selon l'ordre dit naturel
-	 * Dans cet application, nous décidons que l'ordre naturel est celui 
+	 * Dans cet application, nous décidons que l'ordre naturel est celui
 	 * correspondant au N° de la case d'un tableau 2D représenté par la Coord
-	 * ainsi le N° 1 correspond à la Coord ['a', 10], le N° 100 correspond à la Coord ['j', 1]  
+	 * ainsi le N° 1 correspond à la Coord ['a', 10], le N° 100 correspond à la Coord ['j', 1]
 	 */
 	@Override
 	public int compareTo(Coord o) {
-
-		if (this.getColonne() == o.getColonne() && this.getLigne() == o.getLigne()) return 0;
-		if (this.getColonne() < o.getColonne()) return -1;
-		if (this.getColonne() > o.getColonne()) return 1;
-		if (this.getLigne() < o.getLigne()) return -1;
-		if (this.getLigne() > o.getLigne()) return 1;
-
-		return 0;
+		int thisValue = (MAX-this.ligne)*MAX + (this.colonne-'a'+1);
+		int oValue = (MAX-o.ligne)*MAX + (o.colonne-'a'+1);
+		return thisValue - oValue ;
 	}
 
 }

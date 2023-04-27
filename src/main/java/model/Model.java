@@ -26,9 +26,9 @@ import nutsAndBolts.PieceSquareColor;
  */
 public class Model implements BoardGame<Coord> {
 
-	private PieceSquareColor currentGamerColor;    // couleur du joueur courant
+	public PieceSquareColor currentGamerColor;    // couleur du joueur courant
 
-	private ModelImplementor implementor;        // Cet objet sait communiquer avec les PieceModel
+	public ModelImplementor implementor;        // Cet objet sait communiquer avec les PieceModel
 
 	public Model() {
 		super();
@@ -130,7 +130,7 @@ public class Model implements BoardGame<Coord> {
 	 * @return true s'il n'existe qu'1 seule pièce à prendre d'une autre couleur sur la trajectoire
 	 * ou pas de pièce à prendre
 	 */
-	private boolean isThereMaxOnePieceOnItinerary(Coord toMovePieceCoord, Coord targetSquareCoord) {
+	public boolean isThereMaxOnePieceOnItinerary(Coord toMovePieceCoord, Coord targetSquareCoord) {
 
 		return this.implementor.isPiecehere(toMovePieceCoord) && this.implementor.isPiecehere(targetSquareCoord);
 	}
@@ -140,7 +140,7 @@ public class Model implements BoardGame<Coord> {
 	 * @param targetSquareCoord
 	 * @return les coord de la pièce à prendre, null sinon
 	 */
-	private Coord getToCapturePieceCoord(Coord toMovePieceCoord, Coord targetSquareCoord) {
+	public Coord getToCapturePieceCoord(Coord toMovePieceCoord, Coord targetSquareCoord) {
 
 		Coord coord = null;
 
@@ -178,7 +178,7 @@ public class Model implements BoardGame<Coord> {
 	 * @param toCapturePieceCoord
 	 * Suppression effective de la pièce capturée
 	 */
-	private void remove(Coord toCapturePieceCoord) {
+	public void remove(Coord toCapturePieceCoord) {
 		this.implementor.removePiece(toCapturePieceCoord);
 	}
 
