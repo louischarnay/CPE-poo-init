@@ -1,4 +1,4 @@
-package atelier1.gui;
+package gui;
 
 import javafx.scene.paint.Color;
 
