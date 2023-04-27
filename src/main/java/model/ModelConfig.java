@@ -1,7 +1,7 @@
-package model;
+package atelier1.model;
 
 
-import nutsAndBolts.PieceSquareColor;
+import atelier1.nutsAndBolts.PieceSquareColor;
 
 /**
  * @author francoise.perrin
@@ -10,7 +10,7 @@ import nutsAndBolts.PieceSquareColor;
  */
 public class ModelConfig {
 
-	// les coordonnÃ©es des piÃ¨ces nÃ©cessaires Ã Â  la crÃ©ation des piÃ¨ces
+	// les coordonnées des pièces nécessaires à  la création des pièces
 	public final  static Coord[] BLACK_PIECE_COORDS = new Coord[] {
 			new Coord('b',10), new Coord('d',10), new Coord('f',10), new Coord('h',10), new Coord('j',10),
 			new Coord('a',9), new Coord('c',9), new Coord('e',9), new Coord('g',9), new Coord('i',9),

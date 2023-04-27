@@ -1,32 +1,31 @@
-package controller.localController;
+package atelier1.controller.localController;
 
 
-import controller.InputViewData;
-import controller.Mediator;
-import controller.OutputModelData;
-import gui.CheckersSquareGui;
-import gui.View;
+import atelier1.controller.InputViewData;
+import atelier1.controller.Mediator;
+import atelier1.controller.OutputModelData;
+import atelier1.gui.CheckersSquareGui;
+import atelier1.gui.View;
+import atelier1.model.BoardGame;
+import atelier1.model.Coord;
+import atelier1.model.ModelConfig;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import model.BoardGame;
-import model.Coord;
-import model.ModelConfig;
 
 
 /**
  * @author francoiseperrin
  *
- * Le controller a 2 responsabilitÃ©s :
- * 	- il Ã©coute les clics de souris de l'utilisateur sur la vue
- * 	- il invoque la mÃ©thode moveCapturePromote() du model
- * 	  si actions (move + prise + promotion) OK sur model alors elles sont propagÃ©es sur view 
- *    (invoque mÃ©thode moveCapturePromote() de la view)
+ * Le controller a 2 responsabilités :
+ * 	- il écoute les clics de souris de l'utilisateur sur la vue
+ * 	- il invoque la méthode moveCapturePromote() du model
+ * 	  si actions (move + prise + promotion) OK sur model alors elles sont propagées sur view 
+ *    (invoque méthode moveCapturePromote() de la view)
  *    
- * La view et le model ne gÃ©rant pas les coordonnÃ©es des cases de la mÃªme maniÃ¨re
+ * La view et le model ne gérant pas les coordonnées des cases de la même manière
  * le controller assure la conversion :
- * 	- index de 0 Ã Â  99 pour la view
+ * 	- index de 0 à  99 pour la view
  * 	- Coord (col, ligne) pour le model ['a'..'j'][10..1]
  * 
  */
@@ -36,8 +35,8 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	private BoardGame<Coord> model;
 	private View view;
 
-	// Cette valeur est MAJ chaque fois que l'utilisateur clique sur une piÃ¨ce
-	// Elle doit Ãªtre conservÃ©e pour Ãªtre utilisÃ©e lorsque l'utilisateur clique sur une case
+	// Cette valeur est MAJ chaque fois que l'utilisateur clique sur une pièce
+	// Elle doit être conservée pour être utilisée lorsque l'utilisateur clique sur une case
 	private int toMovePieceIndex;	
 
 	public Controller() {
@@ -56,7 +55,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 
 	//////////////////////////////////////////////////////////////////
 	//
-	// Controller vu comme un mÃ©diateur entre la view et le model
+	// Controller vu comme un médiateur entre la view et le model
 	//
 	//////////////////////////////////////////////////////////////////
 
@@ -69,7 +68,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 
 	////////////////////////////////////////////////////////////////////
 	//
-	// Controller vu comme un Ecouteur des Ã©vÃ¨nement souris sur la view
+	// Controller vu comme un Ecouteur des évènement souris sur la view
 	//
 	////////////////////////////////////////////////////////////////////
 
@@ -82,50 +81,46 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 				checkersPieceGuiHandle(mouseEvent);
 		}
 		catch (Exception e) {
-			// Try - Catch pour empÃªcher pgm de planter tant que les interfaces
+			// Try - Catch pour empêcher pgm de planter tant que les interfaces
 			// CheckersSquareGui et CheckersPieceGui n'existent pas
-			System.err.println(
-				e.getMessage() + "\n"
-				+ "=> Cette erreur est \"normale\" tant que n'ont pas Ã©tÃ© implÃ©mentÃ©es\n"
-				+ "   les interfaces CheckersSquareGui et CheckersPieceGui"
-			);
+			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * @param mouseEvent
-	 * Ecoute les Ã©vÃ©nements sur les PieceGui
+	 * Ecoute les événements sur les PieceGui
 	 */
 	private void checkersPieceGuiHandle(MouseEvent mouseEvent) {
 
-		// Recherche PieceGui sÃ©lectionnÃ©e
+		// Recherche PieceGui sélectionnée
 		ImageView selectedPiece = (ImageView) mouseEvent.getSource();
 
-		// Recherche et fixe coordonnÃ©e de la piÃ¨ce sÃ©lectionnÃ©e 
+		// Recherche et fixe coordonnée de la pièce sélectionnée 
 		CheckersSquareGui parentSquare = (CheckersSquareGui)  selectedPiece.getParent();
 		this.setToMovePieceIndex(parentSquare.getSquareCoord());
-		
+
 		mouseEvent.consume();
 	}
 	/**
 	 * @param mouseEvent
-	 * Ecoute les Ã©vÃ©nements sur les SquareGui
+	 * Ecoute les événements sur les SquareGui
 	 */
 	private void checkersSquareGuiHandle(MouseEvent mouseEvent) {
-		System.out.println("ici");
-		// Recherche SquareGUI sÃ©lectionnÃ©
+
+		// Recherche SquareGUI sélectionné
 		CheckersSquareGui square = (CheckersSquareGui) mouseEvent.getSource();
 		int targetSquareIndex = square.getSquareCoord();
 
-		// Le controller va invoquer la mÃ©thode moveCapturePromotion() du model
-		// et si le model confirme que la piÃ¨ce a bien Ã©tÃ© dÃ©placÃ©e Ã Â cet endroit, 
-		// il invoquera une mÃ©thode de la view pour la rafraichir
+		// Le controller va invoquer la méthode moveCapturePromotion() du model
+		// et si le model confirme que la pièce a bien été déplacée à cet endroit, 
+		// il invoquera une méthode de la view pour la rafraichir
 		this.moveCapturePromote(this.getToMovePieceIndex(), targetSquareIndex);
 
-		// il n'y a plus de piÃ¨ce Ã  dÃ©placer
+		// il n'y a plus de pièce à déplacer
 		this.setToMovePieceIndex(-1);
 
-		// On Ã©vite que le parent ne rÃ©cupÃ¨re l'event
+		// On évite que le parent ne récupère l'event
 		mouseEvent.consume();
 	}
 
@@ -133,54 +128,39 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	//////////////////////////////////////////////////////////////////
 	//
 	// Controller vu comme un Substitut du model 
-	// il invoque les mÃ©thodes du model 
-	// aprÃ¨s actions de l'utilisateur sur la vue
+	// il invoque les méthodes du model 
+	// après actions de l'utilisateur sur la vue
 	//
 	//////////////////////////////////////////////////////////////////
 
 	/**
-	 * Invoque mÃ©thode moveCapturePromote() du model (aprÃ¨s transformation des coordonnÃ©es)
-	 * Si dÃ©placement effectif sur model, invoque mÃ©thode actionOnGui() de la view
-	 * pour rafraichir affichage en fonction des donnÃ©es retournÃ©es par le model
+	 * Invoque méthode moveCapturePromote() du model (après transformation des coordonnées)
+	 * Si déplacement effectif sur model, invoque méthode actionOnGui() de la view
+	 * pour rafraichir affichage en fonction des données retournées par le model
 	 */
 	@Override
 	public OutputModelData<Integer> moveCapturePromote(Integer toMovePieceIndex, Integer targetSquareIndex) {
+
 		OutputModelData<Integer> outputControllerData = null;
 
-		OutputModelData<Coord> outputModelData;
-		InputViewData<Integer> inputViewData;
+		// TODO atelier 2
+	
 
-		Coord toMovePieceCoord = this.transformIndexToCoord(toMovePieceIndex);
-		Coord targetSquareCoord = this.transformIndexToCoord(targetSquareIndex);
-
-		if (this.model != null) {
-			outputModelData  = this.model.moveCapturePromote(toMovePieceCoord, targetSquareCoord);
-
-			if (outputModelData.isMoveDone && this.view != null) {
-				inputViewData = new InputViewData<>(
-						toMovePieceIndex,
-						targetSquareIndex,
-						transformCoordToIndex(outputModelData.capturedPieceCoord),
-						transformCoordToIndex(outputModelData.promotedPieceCoord),
-						outputModelData.promotedPieceColor);
-
-				this.view.actionOnGui(inputViewData);
-			}
-		}
-
+		// Inutile de reconstituer un objetOutputModelData<Integer>, aucun client ne le récupère en mode local
 		return outputControllerData;
 	}
 
 
 	/**
 	 * @param squareIndex
-	 * @return les coordonnÃ©es mÃ©tier calculÃ©es Ã Â  partir de l'index du SquareGUI sous la PieceGUI
+	 * @param length
+	 * @return les coordonnées métier calculées à  partir de l'index du SquareGUI sous la PieceGUI
 	 */
 	private Coord transformIndexToCoord (int squareIndex) {
-		Coord coord;
+		Coord coord = null;
 		int  length = ModelConfig.LENGTH;
 		char col = (char) ((squareIndex)%length + 'a');
-		int ligne = length - squareIndex/length;
+		int ligne = length - (squareIndex)/length;
 		coord = new Coord(col, ligne);
 		return coord;
 	}

@@ -1,15 +1,15 @@
-package controller;
+package atelier1.controller;
 
 import java.io.Serializable;
 
-import nutsAndBolts.PieceSquareColor;
+import atelier1.nutsAndBolts.PieceSquareColor;
 
 /**
  * @author francoise.perrin
  *
- * Objet Ã  destination de la View
- * crÃ©Ã© par le Controller
- * Ã  partir des donnÃ©es retournÃ©es par le Model
+ * Objet à destination de la View
+ * créé par le Controller
+ * à partir des données retournées par le Model
  * 
  */
 public class InputViewData<T> implements Serializable{

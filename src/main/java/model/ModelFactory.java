@@ -1,9 +1,9 @@
-package model;
+package atelier1.model;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
-import nutsAndBolts.PieceSquareColor;
+import atelier1.nutsAndBolts.PieceSquareColor;
 
 public class ModelFactory {
 
@@ -14,12 +14,12 @@ public class ModelFactory {
 		// Collection<PieceModel> pieces = new HashSet<PieceModel>();
 		// Collection<PieceModel> pieces = new TreeSet<PieceModel>();
 				
-		// CrÃ©ation des pion blancs et ajout dans la collection de piÃ¨ces
+		// Création des pion blancs et ajout dans la collection de pièces
 		for ( Coord coord : ModelConfig.WHITE_PIECE_COORDS){
 			pieces.add(new PawnModel(coord, PieceSquareColor.WHITE));
 		}
 
-		// CrÃ©ation des pions noirs et ajout dans la collection de piÃ¨ces
+		// Création des pions noirs et ajout dans la collection de pièces
 		for ( Coord coord : ModelConfig.BLACK_PIECE_COORDS){
 			pieces.add(new PawnModel(coord, PieceSquareColor.BLACK));
 		}

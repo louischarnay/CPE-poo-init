@@ -1,18 +1,18 @@
-package gui;
+package atelier1.gui;
 
+import atelier1.nutsAndBolts.PieceSquareColor;
 import javafx.scene.image.Image;
-import nutsAndBolts.PieceSquareColor;
 
 /**
  * @author francoise.perrin
- * Cette interface permet de vÃ©rifier qu'un Node
- * est fonctionnellement une piÃ¨ce du jeu
+ * Cette interface permet de vérifier qu'un Node
+ * est fonctionnellement une pièce du jeu
  * 
  * Lorsque le pion du model est promu en dame
  * le visuel change
  * 
- * La mÃ©thode hasSameColorAsGamer sera utilise en mode Client/server
- * pour empÃªcher un joueur de jouer une piÃ¨ce qui ne lui appartient pas
+ * La méthode hasSameColorAsGamer sera utilise en mode Client/server
+ * pour empêcher un joueur de jouer une pièce qui ne lui appartient pas
  */
 public interface CheckersPieceGui {
 	
