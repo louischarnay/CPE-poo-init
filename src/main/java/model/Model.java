@@ -51,17 +51,16 @@ public class Model implements BoardGame<Coord> {
 	public OutputModelData<Coord> moveCapturePromote(Coord toMovePieceCoord, Coord targetSquareCoord) {
 
 		OutputModelData<Coord> outputModelData = null;
-
 		boolean isMoveDone = false;
 		Coord toCapturePieceCoord = null;
 		Coord toPromotePieceCoord = null;
 		PieceSquareColor toPromotePieceColor = null;
 
 		// Si la pièce est déplaçable (couleur du joueur courant et case arrivée disponible)
-		if(this.isPieceMoveable(toMovePieceCoord, targetSquareCoord)) {
+		if (this.isPieceMoveable(toMovePieceCoord, targetSquareCoord)) {
 
 			// S'il n'existe pas plusieurs pièces sur le chemin
-			if(this.isThereMaxOnePieceOnItinerary(toMovePieceCoord, targetSquareCoord)) {
+			if (this.isThereMaxOnePieceOnItinerary(toMovePieceCoord, targetSquareCoord)) {
 
 				//Recherche coord de l'éventuelle pièce à prendre
 				toCapturePieceCoord = this.getToCapturePieceCoord(toMovePieceCoord, targetSquareCoord);
@@ -78,14 +77,14 @@ public class Model implements BoardGame<Coord> {
 					this.remove(toCapturePieceCoord);
 
 					// promotion éventuelle de la pièce après déplacement
-					if (true) {    // TODO : Test à changer atelier 3
+					if (true) {	// TODO : Test à changer atelier 3
 
 						// TODO atelier 3
 					}
 
 					// S'il n'y a pas eu de prise
 					// ou si une rafle n'est pas possible alors changement de joueur
-					if (true) {    // TODO : Test à changer atelier 4
+					if (true) {	// TODO : Test à changer atelier 4
 						this.switchGamer();
 					}
 
@@ -112,7 +111,7 @@ public class Model implements BoardGame<Coord> {
 	 * et que les coordonnées d'arrivées soient dans les limites du tableau
 	 * et qu'il n'y ait pas de pièce sur la case d'arrivée
 	 */
-	private boolean isPieceMoveable(Coord toMovePieceCoord, Coord targetSquareCoord) {
+	public boolean isPieceMoveable(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		boolean bool = false;
 
 		// TODO : à compléter atelier 4 pour gérer les rafles
@@ -162,7 +161,7 @@ public class Model implements BoardGame<Coord> {
 	 * La PieceModel qui se trouve aux coordonnées passées en paramètre
 	 * est capable de répondre à cette question (par l'intermédiare du ModelImplementor)
 	 */
-	private boolean isMovePiecePossible(Coord toMovePieceCoord, Coord targetSquareCoord, boolean isPieceToCapture) {
+	public boolean isMovePiecePossible(Coord toMovePieceCoord, Coord targetSquareCoord, boolean isPieceToCapture) {
 		return this.implementor.isMovePieceOk(toMovePieceCoord, targetSquareCoord, isPieceToCapture ) ;
 	}
 
@@ -171,7 +170,7 @@ public class Model implements BoardGame<Coord> {
 	 * @param targetSquareCoord
 	 * Déplacement effectif de la PieceModel
 	 */
-	private void movePiece(Coord toMovePieceCoord, Coord targetSquareCoord) {
+	public void movePiece(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		this.implementor.movePiece(toMovePieceCoord, targetSquareCoord);
 	}
 
@@ -183,7 +182,7 @@ public class Model implements BoardGame<Coord> {
 		this.implementor.removePiece(toCapturePieceCoord);
 	}
 
-	private void switchGamer() {
+	public void switchGamer() {
 		this.currentGamerColor = (PieceSquareColor.WHITE).equals(this.currentGamerColor) ?
 				PieceSquareColor.BLACK : PieceSquareColor.WHITE;
 

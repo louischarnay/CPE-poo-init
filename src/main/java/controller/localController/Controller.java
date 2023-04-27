@@ -147,8 +147,8 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	public OutputModelData<Integer> moveCapturePromote(Integer toMovePieceIndex, Integer targetSquareIndex) {
 		OutputModelData<Integer> outputControllerData = null;
 
-		OutputModelData<Coord> outputModelData;
-		InputViewData<Integer> inputViewData;
+		OutputModelData<Coord> outputModelData = null;
+		InputViewData<Integer> inputViewData = null;
 
 		Coord toMovePieceCoord = this.transformIndexToCoord(toMovePieceIndex);
 		Coord targetSquareCoord = this.transformIndexToCoord(targetSquareIndex);
