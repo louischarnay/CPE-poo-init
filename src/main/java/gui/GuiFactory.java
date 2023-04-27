@@ -45,7 +45,7 @@ public class GuiFactory {
 		} else {
 			squareColor = PieceSquareColor.BLACK;
 		}
-		square = new BorderPane();
+		square = new SquareGui(squareColor);
 		
 		// la couleur est définie par les valeurs par défaut de configuration
 		Color color = PieceSquareColor.BLACK.equals(squareColor) ? GuiConfig.CASEBLACK : GuiConfig.CASEWHITE;
@@ -61,9 +61,9 @@ public class GuiFactory {
 	 * @return une PieceGui si col/ligne correspond à cases noires
 	 * des 4 lignes du haut (piece noire) et du bas du damier (piece blanche)
 	 */
-	public static ImageView createPiece(int col, int ligne) {
+	public static PieceGui createPiece(int col, int ligne) {
 
-		ImageView pieceGui = null;
+		PieceGui pieceGui = null;
 		Image image = null;
 		PieceSquareColor pieceColor = null;
 
@@ -75,8 +75,7 @@ public class GuiFactory {
 		}
 		if (pieceColor != null) {
 			image = GuiFactory.createImage(pieceColor, true);
-			pieceGui = new ImageView();
-			pieceGui.setImage(image);
+			pieceGui = new PieceGui(image, pieceColor);
 		}
 
 		return pieceGui;
