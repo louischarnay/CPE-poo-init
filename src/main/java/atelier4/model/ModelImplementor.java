@@ -66,12 +66,15 @@ public class ModelImplementor {
 		return isMovePieceDone;
 	}
 
-	public void removePiece(Coord pieceToTakeCoord) {
+	public void removePiece(Coord pieceToTakeCoord) throws Exception {
 
 		PieceModel pieceToTake = this.findPiece(pieceToTakeCoord);
 		if (pieceToTake != null) {
 			this.pieces.remove(pieceToTake);
+		}else{
+			throw new Exception("Nothing to remove");
 		}
+
 	}
 
 	

@@ -20,18 +20,24 @@ public class OutputModelData<T> implements Serializable{
 	public T capturedPieceCoord = null;
 	public T promotedPieceCoord = null;
 	public PieceSquareColor promotedPieceColor = null;
+	public int scoreWhite = 0;
+	public int scoreBlack = 0;
 	
 	
 	public OutputModelData(
 			boolean isMoveDone, 
 			T capturedPieceCoord,
 			T promotedPieceCoord,
-			PieceSquareColor promotedPieceColor) {
+			PieceSquareColor promotedPieceColor,
+			int scoreWhite,
+			int scoreBlack) {
 		super();
 		this.isMoveDone = isMoveDone;
 		this.capturedPieceCoord = capturedPieceCoord;
 		this.promotedPieceCoord = promotedPieceCoord;
 		this.promotedPieceColor = promotedPieceColor;
+		this.scoreWhite =scoreWhite;
+		this.scoreBlack = scoreBlack;
 	}
 
 
