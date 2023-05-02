@@ -30,9 +30,10 @@ import atelier4.nutsAndBolts.PieceSquareColor;
  */
 public class Model implements BoardGame<Coord> {
 
-	private PieceSquareColor currentGamerColor;	// couleur du joueur courant
- 
-	private ModelImplementor implementor;		// Cet objet sait communiquer avec les PieceModel
+	private PieceSquareColor currentGamerColor;    // couleur du joueur courant
+	private int scoreWhite = 0;
+	private int scoreBlack= 0;
+	private ModelImplementor implementor;        // Cet objet sait communiquer avec les PieceModel
 
 	public Model() {
 		super();
@@ -48,12 +49,12 @@ public class Model implements BoardGame<Coord> {
 	}
 
 
-
 	/**
 	 * Actions potentielles sur le model : move, capture, promotion pion, rafles
 	 */
 	@Override
 	public OutputModelData<Coord> moveCapturePromote(Coord toMovePieceCoord, Coord targetSquareCoord) {
+
 
 		OutputModelData<Coord> outputModelData = null;
 		boolean isMoveDone = false;
@@ -78,6 +79,27 @@ public class Model implements BoardGame<Coord> {
 					this.movePiece(toMovePieceCoord, targetSquareCoord);
 					isMoveDone = true;
 
+					// suppression effective de la pi�ce prise
+					// suppression effective de la pi�ce prise
+					boolean isRemoveOk = true;
+					try {
+						this.remove(toCapturePieceCoord);
+					}catch (Exception e){
+						isRemoveOk = false;
+					}
+
+					if(isRemoveOk){
+						if(this.currentGamerColor== PieceSquareColor.WHITE){
+							scoreWhite = scoreWhite + 1;
+							System.out.println("score white" + scoreWhite);
+						}else if(this.currentGamerColor== PieceSquareColor.BLACK){
+							scoreBlack = scoreBlack + 1;
+							System.out.println("score black" + scoreBlack);
+						}
+					}
+
+					// compteur de point lors de la prise de piece
+					// promotion �ventuelle de la pi�ce apr�s d�placement
 					// suppression effective de la pi�ce prise 
 					this.remove(toCapturePieceCoord);
 
@@ -87,13 +109,12 @@ public class Model implements BoardGame<Coord> {
 						toPromotePieceCoord = targetSquareCoord;
 						toPromotePieceColor = this.currentGamerColor;
 					}
-					
+
 					// S'il n'y a pas eu de prise
 					// ou si une rafle n'est pas possible alors changement de joueur 
 					if (!this.isThereMaxOnePieceOnItinerary(toMovePieceCoord, targetSquareCoord)) {
 						this.switchGamer();
 					}
-
 				}
 			}
 		}
@@ -101,10 +122,12 @@ public class Model implements BoardGame<Coord> {
 
 		// Constitution objet de donn�es avec toutes les infos n�cessaires � la view
 		outputModelData = new OutputModelData<Coord>(
-				isMoveDone, 
-				toCapturePieceCoord, 
-				toPromotePieceCoord, 
-				toPromotePieceColor);
+				isMoveDone,
+				toCapturePieceCoord,
+				toPromotePieceCoord,
+				toPromotePieceColor,
+				scoreWhite,
+				scoreBlack);
 
 		return outputModelData;
 
@@ -113,17 +136,17 @@ public class Model implements BoardGame<Coord> {
 	/**
 	 * @param toMovePieceCoord
 	 * @param targetSquareCoord
-	 * @return true si la PieceModel � d�placer est de la couleur du joueur courant 
+	 * @return true si la PieceModel � d�placer est de la couleur du joueur courant
 	 * et que les coordonn�es d'arriv�es soient dans les limites du tableau
 	 * et qu'il n'y ait pas de pi�ce sur la case d'arriv�e
 	 */
 	private boolean isPieceMoveable(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		boolean bool = false;
-		
 
-		bool = 	this.implementor.isPiecehere(toMovePieceCoord) 
-				&& this.implementor.getPieceColor(toMovePieceCoord) == this.currentGamerColor 
-				&& Coord.coordonnees_valides(targetSquareCoord) 
+
+		bool = this.implementor.isPiecehere(toMovePieceCoord)
+				&& this.implementor.getPieceColor(toMovePieceCoord) == this.currentGamerColor
+				&& Coord.coordonnees_valides(targetSquareCoord)
 				&& !this.implementor.isPiecehere(targetSquareCoord) ;
 
 		return bool ;
@@ -140,7 +163,7 @@ public class Model implements BoardGame<Coord> {
 
 		List<Coord> coordsOnItinerary = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
 
-		if (coordsOnItinerary != null) { 
+		if (coordsOnItinerary != null) {
 
 			int count = 0;
 			Coord potentialToCapturePieceCoord = null;
@@ -172,7 +195,7 @@ public class Model implements BoardGame<Coord> {
 		Coord toCapturePieceCoord = null;
 		List<Coord> coordsOnItinerary = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
 
-		if (coordsOnItinerary != null) { 
+		if (coordsOnItinerary != null) {
 
 			int count = 0;
 			Coord potentialToCapturePieceCoord = null;
@@ -219,15 +242,15 @@ public class Model implements BoardGame<Coord> {
 	 * @param toCapturePieceCoord
 	 * Suppression effective de la pi�ce captur�e
 	 */
-	private void remove(Coord toCapturePieceCoord) {
+	private void remove(Coord toCapturePieceCoord) throws Exception {
 		this.implementor.removePiece(toCapturePieceCoord);
 	}
 
-	
+
 	private void switchGamer() {
 		this.currentGamerColor = (PieceSquareColor.WHITE).equals(this.currentGamerColor) ?
 				PieceSquareColor.BLACK : PieceSquareColor.WHITE;
-		
+
 	}
 
 	private boolean isPiecePromotable(Coord targetSquareCoord) {
