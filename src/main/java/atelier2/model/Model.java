@@ -82,9 +82,10 @@ public class Model implements BoardGame<Coord> {
 					this.remove(toCapturePieceCoord);
 
 					// promotion éventuelle de la pièce après déplacement 
-					if (true) {	// TODO : Test à changer atelier 3
-						
-						// TODO atelier 3
+					if (this.isPiecePromotable(targetSquareCoord)) {
+						this.promotePiece(targetSquareCoord);
+						toPromotePieceCoord = targetSquareCoord;
+						toPromotePieceColor = this.currentGamerColor;
 					}
 					
 					// S'il n'y a pas eu de prise
@@ -227,6 +228,14 @@ public class Model implements BoardGame<Coord> {
 		this.currentGamerColor = (PieceSquareColor.WHITE).equals(this.currentGamerColor) ?
 				PieceSquareColor.BLACK : PieceSquareColor.WHITE;
 		
+	}
+
+	private boolean isPiecePromotable(Coord targetSquareCoord) {
+		return this.implementor.isPiecePromotable(targetSquareCoord);
+	}
+
+	private void promotePiece(Coord targetSquareCoord) {
+		this.implementor.promotePiece(targetSquareCoord);
 	}
 
 
