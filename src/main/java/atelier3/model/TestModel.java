@@ -1,8 +1,5 @@
-package atelier2.model;
+package atelier3.model;
 
-
-
-import atelier2.nutsAndBolts.PieceSquareColor;
 
 /**
  * @author francoiseperrin

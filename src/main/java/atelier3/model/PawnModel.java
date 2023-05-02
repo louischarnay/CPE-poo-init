@@ -1,12 +1,12 @@
-package atelier2.model;
+package atelier3.model;
 
 
 import java.util.LinkedList;
 import java.util.List;
 
-import atelier2.nutsAndBolts.PieceSquareColor;
+import atelier3.nutsAndBolts.PieceSquareColor;
 
-public class PawnModel implements PieceModel{
+public class PawnModel extends AbstractPieceModel implements PieceModel, Promotable{
 
 	private Coord coord;
 	private PieceSquareColor pieceColor;
@@ -14,7 +14,7 @@ public class PawnModel implements PieceModel{
 	private int direction;
 	
 	public PawnModel(Coord coord, PieceSquareColor pieceColor) {
-		super();
+		super(coord, pieceColor);
 		this.coord = coord;
 		this.pieceColor = pieceColor;
 		this.direction = PieceSquareColor.BLACK.equals(this.getPieceColor()) ? -1 : 1;
@@ -54,10 +54,10 @@ public class PawnModel implements PieceModel{
 		int deltaLig = (int) Math.signum(ligDistance);
 		int deltaCol = (int) Math.signum(colDistance);
 
-		// Vérif déplacement en diagonale
+		// Vï¿½rif dï¿½placement en diagonale
 		if (Math.abs(colDistance) == Math.abs(ligDistance)){
 
-			// recherche coordonnées des cases traversées
+			// recherche coordonnï¿½es des cases traversï¿½es
 			for (int i = 1; i < Math.abs(colDistance); i++) {
 				Coord coord = new Coord((char) (initCol + i*deltaCol), initLig + i*deltaLig);
 				coordsOnItinery.add(coord);
@@ -76,7 +76,7 @@ public class PawnModel implements PieceModel{
 		int ligDistance = targetCoord.getLigne() - this.getLigne();
 		int deltaLig = (int) Math.signum(ligDistance);
 		
-		// Cas d'un déplacement en diagonale
+		// Cas d'un dï¿½placement en diagonale
 		if (Math.abs(colDistance) == Math.abs(ligDistance)){
 			
 			// sans prise
@@ -103,5 +103,15 @@ public class PawnModel implements PieceModel{
 		return " ["+pieceColor.toString().charAt(0) + coord + "]";
 	}
 
+
+	@Override
+	public boolean isPromotable(){
+		return direction == 1 && this.getLigne() == ModelConfig.LENGTH || direction == -1 && this.getLigne() == 1;
+	}
+
+	@Override
+	public void promote(){
+		throw new UnsupportedOperationException();
+	}
 }
 

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
-import atelier2.model.Coord;
+import atelier3.model.Coord;
 import org.junit.Test;
 
 /**
@@ -16,14 +16,14 @@ public class CoordTest {
     public void coordClassExists()
     {
         try {
-            Class.forName("atelier2.model.Coord");
+            Class.forName("atelier3.model.Coord");
         } catch (ClassNotFoundException e) {
             fail("Coord class does not exist");
         }
     }
 
     /**
-     * Tests extraits de {@link atelier2.model.TestModel}
+     * Tests extraits de {@link atelier3.model.TestModel}
      */
     @Test
     public void coordonneesValides_returnsAsExpected_quick() {

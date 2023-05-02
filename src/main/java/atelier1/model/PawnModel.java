@@ -1,10 +1,10 @@
-package atelier2.model;
+package atelier1.model;
 
 
 import java.util.LinkedList;
 import java.util.List;
 
-import atelier2.nutsAndBolts.PieceSquareColor;
+import atelier1.nutsAndBolts.PieceSquareColor;
 
 public class PawnModel implements PieceModel{
 
@@ -42,31 +42,6 @@ public class PawnModel implements PieceModel{
 	public PieceSquareColor getPieceColor() {
 		return pieceColor;
 	}
-
-	@Override
-	public List<Coord> getCoordsOnItinerary(Coord targetCoord) {
-
-		List<Coord> coordsOnItinery = new LinkedList<Coord>(); 
-		int initCol = this.getColonne();
-		int initLig = this.getLigne();
-		int colDistance = targetCoord.getColonne() - this.getColonne();
-		int ligDistance = targetCoord.getLigne() - this.getLigne();
-		int deltaLig = (int) Math.signum(ligDistance);
-		int deltaCol = (int) Math.signum(colDistance);
-
-		// Vérif déplacement en diagonale
-		if (Math.abs(colDistance) == Math.abs(ligDistance)){
-
-			// recherche coordonnées des cases traversées
-			for (int i = 1; i < Math.abs(colDistance); i++) {
-				Coord coord = new Coord((char) (initCol + i*deltaCol), initLig + i*deltaLig);
-				coordsOnItinery.add(coord);
-			}
-		}
-		return coordsOnItinery;
-	}
-
-
 	
 	@Override
 	public boolean isMoveOk(Coord targetCoord, boolean isPieceToCapture) {
@@ -95,6 +70,16 @@ public class PawnModel implements PieceModel{
 		return ret;
 	}
 
+	@Override
+	public List<Coord> getCoordsOnItinerary(Coord targetCoord) {
+
+		List<Coord> coordsOnItinery = new LinkedList<Coord>(); 
+
+		// TODO Atelier 2
+		
+		return coordsOnItinery;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -103,5 +88,6 @@ public class PawnModel implements PieceModel{
 		return " ["+pieceColor.toString().charAt(0) + coord + "]";
 	}
 
+	
 }
 

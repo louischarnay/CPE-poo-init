@@ -1,10 +1,10 @@
-package atelier2.model;
+package atelier1.model;
 
 
 import java.util.Collection;
 import java.util.List;
 
-import atelier2.nutsAndBolts.PieceSquareColor;
+import atelier1.nutsAndBolts.PieceSquareColor;
 
 /**
  * @author francoise.perrin
@@ -68,20 +68,16 @@ public class ModelImplementor {
 
 	public void removePiece(Coord pieceToTakeCoord) {
 
-		PieceModel pieceToTake = this.findPiece(pieceToTakeCoord);
-		if (pieceToTake != null) {
-			this.pieces.remove(pieceToTake);
-		}
+		// TODO Atelier 2
+		
 	}
 
 	
 	public List<Coord> getCoordsOnItinerary(Coord initCoord, Coord targetCoord) {
 		List<Coord> coordsOnItinerary = null;
-		PieceModel initPiece = this.findPiece(initCoord);
-		if (initPiece != null) {
-			coordsOnItinerary = initPiece.getCoordsOnItinerary(targetCoord) ;
-		}
-
+		
+		// TODO Atelier 2
+		
 		return coordsOnItinerary;
 	}
 
@@ -90,7 +86,7 @@ public class ModelImplementor {
 	 * @param coord
 	 * @return la pièce qui se trouve aux coordonnées indiquées
 	 */
-	private PieceModel findPiece(Coord coord) {		
+	 PieceModel findPiece(Coord coord) {		// TODO : remettre en "private" après test unitaires
 		PieceModel findPiece = null;
 
 		for(PieceModel piece : this.pieces) {
@@ -144,9 +140,8 @@ public class ModelImplementor {
 			}
 			st +="\n";
 		}
-		return "Damier du model \n" + st;	
+		
+		return "\nDamier du model \n" + st;	
 	}
-
-
 
 }

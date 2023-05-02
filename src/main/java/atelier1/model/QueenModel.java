@@ -1,10 +1,10 @@
-package atelier2.model;
+package atelier1.model;
 
 
 import java.util.LinkedList;
 import java.util.List;
 
-import atelier2.nutsAndBolts.PieceSquareColor;
+import atelier1.nutsAndBolts.PieceSquareColor;
 /**
  * @author francoiseperrin
  *
