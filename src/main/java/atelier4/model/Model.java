@@ -79,7 +79,6 @@ public class Model implements BoardGame<Coord> {
 					this.movePiece(toMovePieceCoord, targetSquareCoord);
 					isMoveDone = true;
 
-
 					// suppression effective de la pi�ce prise
 					// suppression effective de la pi�ce prise
 					boolean isRemoveOk = true;
@@ -100,9 +99,11 @@ public class Model implements BoardGame<Coord> {
 					}
 
 					// compteur de point lors de la prise de piece
-
-
 					// promotion �ventuelle de la pi�ce apr�s d�placement
+					// suppression effective de la pi�ce prise 
+					this.remove(toCapturePieceCoord);
+
+					// promotion �ventuelle de la pi�ce apr�s d�placement 
 					if (this.isPiecePromotable(targetSquareCoord)) {
 						this.promotePiece(targetSquareCoord);
 						toPromotePieceCoord = targetSquareCoord;
@@ -110,11 +111,10 @@ public class Model implements BoardGame<Coord> {
 					}
 
 					// S'il n'y a pas eu de prise
-					// ou si une rafle n'est pas possible alors changement de joueur
-					if (true) {    // TODO : Test � changer atelier 4
+					// ou si une rafle n'est pas possible alors changement de joueur 
+					if (!this.isThereMaxOnePieceOnItinerary(toMovePieceCoord, targetSquareCoord)) {
 						this.switchGamer();
 					}
-
 				}
 			}
 		}
@@ -174,8 +174,8 @@ public class Model implements BoardGame<Coord> {
 				}
 			}
 			// Il n'existe qu'1 seule pi�ce � prendre d'une autre couleur sur la trajectoire
-			if (count == 0
-					|| (count == 1 && this.currentGamerColor !=
+			if (count == 0 
+					|| (count == 1 && this.currentGamerColor != 
 					this.implementor.getPieceColor(potentialToCapturePieceCoord))) {
 				isThereMaxOnePieceOnItinerary = true;
 			}
@@ -206,8 +206,8 @@ public class Model implements BoardGame<Coord> {
 				}
 			}
 			// Il n'existe qu'1 seule pi�ce � prendre d'une autre couleur sur la trajectoire
-			if (count == 0
-					|| (count == 1 && this.currentGamerColor !=
+			if (count == 0 
+					|| (count == 1 && this.currentGamerColor != 
 					this.implementor.getPieceColor(potentialToCapturePieceCoord))) {
 				toCapturePieceCoord = potentialToCapturePieceCoord;
 			}
@@ -222,7 +222,7 @@ public class Model implements BoardGame<Coord> {
 	 * @param isPieceToCapture
 	 * @return true si le d�placement est l�gal
 	 * (s'effectue en diagonale, avec ou sans prise)
-	 * La PieceModel qui se trouve aux coordonn�es pass�es en param�tre
+	 * La PieceModel qui se trouve aux coordonn�es pass�es en param�tre 
 	 * est capable de r�pondre �cette question (par l'interm�diare du ModelImplementor)
 	 */
 	private boolean isMovePiecePossible(Coord toMovePieceCoord, Coord targetSquareCoord, boolean isPieceToCapture) {
