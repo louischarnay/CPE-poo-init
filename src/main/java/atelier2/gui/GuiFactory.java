@@ -20,7 +20,7 @@ import javafx.scene.layout.BorderPane;
  */
 public class GuiFactory {
 
-	
+
 	/**
 	 * @param col
 	 * @param ligne
@@ -28,7 +28,7 @@ public class GuiFactory {
 	 * la case en bas � gauche est noire
 	 */
 	public static BorderPane createSquare(int col, int ligne) {
-		
+
 		BorderPane square = null;
 		PieceSquareColor squareColor;
 
@@ -75,10 +75,10 @@ public class GuiFactory {
 	 */
 	public static void PromotePiece(ImageView piece, PieceSquareColor promotedPieceColor) {
 
-		// ToDo Atelier 3
-		
+		piece.setImage(GuiFactory.createImage(promotedPieceColor, false));
+
 	}
-	
+
 	/**
 	 * @param pieceColor
 	 * @param ispawn
@@ -92,12 +92,11 @@ public class GuiFactory {
 
 		if (ispawn) {
 			nomImageFile = pieceColor == PieceSquareColor.BLACK ? "PionNoir.png" : "PionBlanc.png";
-		}
-		else {	
+		} else {
 			nomImageFile = pieceColor == PieceSquareColor.BLACK ? "DameNoire.png" : "DameBlanche.png";
 		}
 
-		pieceImageFile = g.getAbsolutePath()+"/src/main/resources/images/" + nomImageFile;	// TODO - attention au chemin
+		pieceImageFile = g.getAbsolutePath()+"/src/main/resources/images/" + nomImageFile;
 		try {
 			image = new Image(new FileInputStream(pieceImageFile));
 		} catch (FileNotFoundException e) {
