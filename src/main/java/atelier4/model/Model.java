@@ -99,10 +99,6 @@ public class Model implements BoardGame<Coord> {
 					}
 
 					// compteur de point lors de la prise de piece
-					// promotion �ventuelle de la pi�ce apr�s d�placement
-					// suppression effective de la pi�ce prise 
-					this.remove(toCapturePieceCoord);
-
 					// promotion �ventuelle de la pi�ce apr�s d�placement 
 					if (this.isPiecePromotable(targetSquareCoord)) {
 						this.promotePiece(targetSquareCoord);
