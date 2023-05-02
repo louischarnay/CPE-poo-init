@@ -3,5 +3,6 @@ module filRouge {
 
     exports atelier1.launcher;
     exports atelier2.launcher;
-    exports atelier3.launcher;
+    exports atelier4.launcher;
+    //exports atelier4.launcher;
 }

@@ -1,6 +1,6 @@
-package atelier3.gui;
+package atelier4.gui;
 
-import atelier3.controller.InputViewData;
+import atelier4.controller.InputViewData;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

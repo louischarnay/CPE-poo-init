@@ -1,4 +1,4 @@
-package atelier3.gui;
+package atelier4.gui;
 
 /**
  * @author francoise.perrin

@@ -1,6 +1,6 @@
-package atelier3.model;
+package atelier4.model;
 
-import atelier3.nutsAndBolts.PieceSquareColor;
+import atelier4.nutsAndBolts.PieceSquareColor;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,8 +1,8 @@
-package atelier3.controller;
+package atelier4.controller;
 
 import java.io.Serializable;
 
-import atelier3.nutsAndBolts.PieceSquareColor;
+import atelier4.nutsAndBolts.PieceSquareColor;
 
 /**
  * @author francoise.perrin

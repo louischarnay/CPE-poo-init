@@ -1,6 +1,6 @@
-package atelier3.gui;
+package atelier4.gui;
 
-import atelier3.nutsAndBolts.PieceSquareColor;
+import atelier4.nutsAndBolts.PieceSquareColor;
 import javafx.scene.image.Image;
 
 /**

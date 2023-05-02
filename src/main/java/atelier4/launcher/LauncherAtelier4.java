@@ -1,13 +1,13 @@
-package atelier3.launcher;
+package atelier4.launcher;
 
 
-import atelier3.controller.Mediator;
-import atelier3.controller.localController.Controller;
-import atelier3.gui.GuiConfig;
-import atelier3.gui.View;
-import atelier3.model.BoardGame;
-import atelier3.model.Coord;
-import atelier3.model.Model;
+import atelier4.controller.Mediator;
+import atelier4.controller.localController.Controller;
+import atelier4.gui.GuiConfig;
+import atelier4.gui.View;
+import atelier4.model.BoardGame;
+import atelier4.model.Coord;
+import atelier4.model.Model;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
-public class LauncherAtelier2 extends Application {
+public class LauncherAtelier4 extends Application {
 
 	private BoardGame<Coord> model;
 	private EventHandler<MouseEvent> controller;
@@ -23,7 +23,7 @@ public class LauncherAtelier2 extends Application {
 	
 	public static void main (String[] args) {
 
-		LauncherAtelier2.launch();
+		LauncherAtelier4.launch();
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package atelier3.model;
+package atelier4.model;
 
 
 /**

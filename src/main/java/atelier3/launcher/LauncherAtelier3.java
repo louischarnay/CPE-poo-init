@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
-public class LauncherAtelier2 extends Application {
+public class LauncherAtelier3 extends Application {
 
 	private BoardGame<Coord> model;
 	private EventHandler<MouseEvent> controller;
@@ -23,7 +23,7 @@ public class LauncherAtelier2 extends Application {
 	
 	public static void main (String[] args) {
 
-		LauncherAtelier2.launch();
+		atelier3.launcher.LauncherAtelier3.launch();
 	}
 
 	@Override

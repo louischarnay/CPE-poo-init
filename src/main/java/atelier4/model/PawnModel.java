@@ -1,10 +1,10 @@
-package atelier3.model;
+package atelier4.model;
 
 
 import java.util.LinkedList;
 import java.util.List;
 
-import atelier3.nutsAndBolts.PieceSquareColor;
+import atelier4.nutsAndBolts.PieceSquareColor;
 
 public class PawnModel extends AbstractPieceModel implements PieceModel, Promotable{
 

@@ -1,8 +1,8 @@
-package atelier3.controller;
+package atelier4.controller;
 
-import atelier3.gui.View;
-import atelier3.model.BoardGame;
-import atelier3.model.Coord;
+import atelier4.gui.View;
+import atelier4.model.BoardGame;
+import atelier4.model.Coord;
 
 /**
  * @author francoise.perrin

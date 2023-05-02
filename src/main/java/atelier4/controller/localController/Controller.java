@@ -1,14 +1,14 @@
-package atelier3.controller.localController;
+package atelier4.controller.localController;
 
 
-import atelier3.controller.InputViewData;
-import atelier3.controller.Mediator;
-import atelier3.controller.OutputModelData;
-import atelier3.gui.CheckersSquareGui;
-import atelier3.gui.View;
-import atelier3.model.BoardGame;
-import atelier3.model.Coord;
-import atelier3.model.ModelConfig;
+import atelier4.controller.InputViewData;
+import atelier4.controller.Mediator;
+import atelier4.controller.OutputModelData;
+import atelier4.gui.CheckersSquareGui;
+import atelier4.gui.View;
+import atelier4.model.BoardGame;
+import atelier4.model.Coord;
+import atelier4.model.ModelConfig;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;

@@ -1,6 +1,6 @@
-package atelier3.model;
+package atelier4.model;
 
-import atelier3.controller.OutputModelData;
+import atelier4.controller.OutputModelData;
 
 /**
  * @author francoise.perrin
