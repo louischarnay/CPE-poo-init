@@ -1,5 +1,5 @@
 module filRouge {
     requires javafx.controls;
 
-    exports launcher;
+    exports atelier2.launcher;
 }
