@@ -101,17 +101,22 @@ public class Model implements BoardGame<Coord> {
 					}
 
 					// compteur de point lors de la prise de piece
-					// promotion �ventuelle de la pi�ce apr�s d�placement 
+					// promotion �ventuelle de la pi�ce apr�s d�placement
 					if (this.isPiecePromotable(targetSquareCoord)) {
 						this.promotePiece(targetSquareCoord);
 						toPromotePieceCoord = targetSquareCoord;
 						toPromotePieceColor = this.currentGamerColor;
 					}
 
-					// S'il n'y a pas eu de prise
-					// ou si une rafle n'est pas possible alors changement de joueur 
-					if (!this.isThereMaxOnePieceOnItinerary(toMovePieceCoord, targetSquareCoord)) {
-						this.switchGamer();
+					// Si les points des deux joueurs sont inférieur à 20
+					if (scoreWhite < 20 && scoreBlack < 20) {
+						// S'il n'y a pas eu de prise
+						// ou si une rafle n'est pas possible alors changement de joueur
+						if (!this.isThereMaxOnePieceOnItinerary(toMovePieceCoord, targetSquareCoord)) {
+							this.switchGamer();
+						}
+					} else {
+						System.out.println("Fin de partie");
 					}
 				}
 			}
@@ -172,8 +177,8 @@ public class Model implements BoardGame<Coord> {
 				}
 			}
 			// Il n'existe qu'1 seule pi�ce � prendre d'une autre couleur sur la trajectoire
-			if (count == 0 
-					|| (count == 1 && this.currentGamerColor != 
+			if (count == 0
+					|| (count == 1 && this.currentGamerColor !=
 					this.implementor.getPieceColor(potentialToCapturePieceCoord))) {
 				isThereMaxOnePieceOnItinerary = true;
 			}
@@ -204,8 +209,8 @@ public class Model implements BoardGame<Coord> {
 				}
 			}
 			// Il n'existe qu'1 seule pi�ce � prendre d'une autre couleur sur la trajectoire
-			if (count == 0 
-					|| (count == 1 && this.currentGamerColor != 
+			if (count == 0
+					|| (count == 1 && this.currentGamerColor !=
 					this.implementor.getPieceColor(potentialToCapturePieceCoord))) {
 				toCapturePieceCoord = potentialToCapturePieceCoord;
 			}
@@ -220,7 +225,7 @@ public class Model implements BoardGame<Coord> {
 	 * @param isPieceToCapture
 	 * @return true si le d�placement est l�gal
 	 * (s'effectue en diagonale, avec ou sans prise)
-	 * La PieceModel qui se trouve aux coordonn�es pass�es en param�tre 
+	 * La PieceModel qui se trouve aux coordonn�es pass�es en param�tre
 	 * est capable de r�pondre �cette question (par l'interm�diare du ModelImplementor)
 	 */
 	private boolean isMovePiecePossible(Coord toMovePieceCoord, Coord targetSquareCoord, boolean isPieceToCapture) {
