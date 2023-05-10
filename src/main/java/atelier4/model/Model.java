@@ -92,10 +92,8 @@ public class Model implements BoardGame<Coord> {
 					if(isRemoveOk){
 						if(this.currentGamerColor== PieceSquareColor.WHITE){
 							scoreWhite = scoreWhite + 1;
-							System.out.println("score white" + scoreWhite);
 						}else if(this.currentGamerColor== PieceSquareColor.BLACK){
 							scoreBlack = scoreBlack + 1;
-							System.out.println("score black" + scoreBlack);
 						}
 					}
 

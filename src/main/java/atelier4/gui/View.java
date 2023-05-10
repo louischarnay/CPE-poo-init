@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -23,24 +24,32 @@ public class View extends BorderPane {
 	// le damier compos� de carr�s noirs et blancs
 	// sur lesquels sont positionn�s des pi�ces noires ou blanches
 	Pane board ;
+	Pane infoPlayer;
 
 	public View (EventHandler<MouseEvent> clicListener) {
 		super();
 
+
 		// les cases et le pi�ces sur le damier seront �cout�es par l'objet
 		// pass� en param�tre au constructeur
 		board = new Board(clicListener);
+		infoPlayer = new Board(clicListener);
 
 		
 		// cr�ation d'un fond d'�cran qui contient le damier + les axes 
-		BorderPane checkersBoard = new BorderPane();	
+		BorderPane checkersBoard = new BorderPane();
+		BorderPane scoreBoard = new BorderPane();
 
 		// la taille du damier est fonction de taille de la Scene
 		board.prefWidthProperty().bind(this.widthProperty());
 		board.prefHeightProperty().bind(this.heightProperty());
 
+		infoPlayer.prefWidthProperty().bind(this.widthProperty());
+		infoPlayer.prefHeightProperty().bind(this.heightProperty());
+
 		// ajout du damier au centre du fond d'�cran
 		checkersBoard.setCenter(board);
+		scoreBoard.setCenter(infoPlayer);
 
 		// ajout des axes sur les cot�s du damier
 		checkersBoard.setTop(createHorizontalAxis());
@@ -48,10 +57,16 @@ public class View extends BorderPane {
 		checkersBoard.setLeft(createVerticalAxis());
 		checkersBoard.setRight(createVerticalAxis());
 
+		scoreBoard.setCenter(infoPlayer);
+		scoreBoard.setTop(createHorizontalAxis());
+		scoreBoard.setBottom(createHorizontalAxis());
+		scoreBoard.setLeft(createVerticalAxis());
+		scoreBoard.setRight(createVerticalAxis());
+
 		// ajout du fond d'�cran �la vue
 		this.setCenter(checkersBoard);
 
-
+		this.setCenter(scoreBoard);
 		
 	}
 
