@@ -92,8 +92,10 @@ public class Model implements BoardGame<Coord> {
 						if(this.currentGamerColor== PieceSquareColor.WHITE){
 							scoreWhite = scoreWhite + 1;
 							System.out.println("score white : " + scoreWhite);
+							System.out.println("score black : " + scoreBlack);
 						}else if(this.currentGamerColor== PieceSquareColor.BLACK){
 							scoreBlack = scoreBlack + 1;
+							System.out.println("score white : " + scoreWhite);
 							System.out.println("score black : " + scoreBlack);
 						}
 					}
